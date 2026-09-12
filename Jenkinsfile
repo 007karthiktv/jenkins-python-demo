@@ -1,0 +1,32 @@
+pipeline{
+    agent{docker {image 'python:3.13-alpine'}}
+    stages{
+        stage('checkout'){
+            steps{
+                checkout scm
+            }
+        }
+        stage('install dependency'){
+            steps{
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('run application'){
+            steps{
+                sh 'python app.py'
+            }
+        }
+        stage('test application'){
+            steps{
+                sh 'pytest '
+            }
+        }
+    }
+    post{
+        success{
+            echo 'accepted'
+        }failure{
+            echo 'rejected'
+        }
+    }
+}
