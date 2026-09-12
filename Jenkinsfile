@@ -25,7 +25,8 @@ pipeline{
     post{
         success{
             echo 'accepted'
-        }failure{
+        }
+        failure{
             echo 'rejected'
         }
     }
