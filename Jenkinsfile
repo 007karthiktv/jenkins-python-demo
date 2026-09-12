@@ -1,5 +1,12 @@
 pipeline{
-    agent{docker {image 'python:3.13-alpine'}}
+    agent{
+        docker{
+             image 'python:3.13-alpine'
+             args '-u root'
+
+        } 
+        
+    }
     stages{
         stage('checkout'){
             steps{
@@ -8,7 +15,7 @@ pipeline{
         }
         stage('install dependency'){
             steps{
-                sh 'pip install -r requirements.txt'
+                 sh 'pip install --target=/tmp/python-packages -r requirements.txt'
             }
         }
         stage('run application'){
