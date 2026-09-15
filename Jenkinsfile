@@ -20,7 +20,7 @@ pipeline{
         }
         stage('run application'){
             steps{
-                sh 'python app.py'
+                sh 'PYTHONPATH=/tmp/python-packages python app.py'
             }
         }
         stage('test application'){
