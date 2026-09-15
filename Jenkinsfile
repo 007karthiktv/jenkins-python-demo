@@ -25,7 +25,7 @@ pipeline{
         }
         stage('test application'){
             steps{
-                sh 'pytest '
+                sh 'PYTHONPATH=/tmp/python-packages python -m pytest '
             }
         }
     }
